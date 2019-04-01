@@ -176,6 +176,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CharacterRostersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -185,17 +186,30 @@
     <Compile Include="Migrations\201903282221088_AddedInitialModels.Designer.cs">
       <DependentUpon>201903282221088_AddedInitialModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903290007099_AddedCharactersAndMoves.cs" />
+    <Compile Include="Migrations\201903290007099_AddedCharactersAndMoves.Designer.cs">
+      <DependentUpon>201903290007099_AddedCharactersAndMoves.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903291706020_AddedChracterRoster.cs" />
+    <Compile Include="Migrations\201903291706020_AddedChracterRoster.Designer.cs">
+      <DependentUpon>201903291706020_AddedChracterRoster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903300019470_AddedNotationsInCharacterRoster.cs" />
+    <Compile Include="Migrations\201903300019470_AddedNotationsInCharacterRoster.Designer.cs">
+      <DependentUpon>201903300019470_AddedNotationsInCharacterRoster.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MkxCharacter.cs" />
-    <Compile Include="Models\MKXMove.cs" />
+    <Compile Include="Models\CharacterRoster.cs" />
     <Compile Include="Models\MkxVariation.cs" />
     <Compile Include="Models\Move.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="View Models\CharacterRosterFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -252,6 +266,7 @@
     <Content Include="Content\Images\MKX.jpg" />
     <Content Include="Content\Images\mkxlogo.png" />
     <Content Include="Content\Images\mortal-kombat-x-logo-png.png" />
+    <Content Include="Content\Images\Mortal-Kombat-X-PNG.png" />
     <Content Include="Content\Images\MortalKobatXlogo.jpeg" />
     <Content Include="Content\Images\SamuraiShowdown.png" />
     <Content Include="Content\Images\SFV-Arcade-Edition1.jpg" />
@@ -392,9 +407,13 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\CharacterRosters\Index.cshtml" />
+    <Content Include="Views\CharacterRosters\CharacterRosterForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\AppFile\Images\" />
+    <Folder Include="Views\Characters\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -410,6 +429,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903282221088_AddedInitialModels.resx">
       <DependentUpon>201903282221088_AddedInitialModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903290007099_AddedCharactersAndMoves.resx">
+      <DependentUpon>201903290007099_AddedCharactersAndMoves.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903291706020_AddedChracterRoster.resx">
+      <DependentUpon>201903291706020_AddedChracterRoster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903300019470_AddedNotationsInCharacterRoster.resx">
+      <DependentUpon>201903300019470_AddedNotationsInCharacterRoster.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

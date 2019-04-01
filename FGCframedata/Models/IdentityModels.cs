@@ -22,7 +22,8 @@ namespace FGCframedata.Models
     {
         public DbSet<Character> Characters { get; set; }
         public DbSet<Move> Moves { get; set; }
-
+        public DbSet<CharacterRoster> CharacterRosters { get; set; }
+        
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

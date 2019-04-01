@@ -6,16 +6,17 @@ using System.Web;
 
 namespace FGCframedata.Models
 {
-    public abstract class Character
+    public class CharacterRoster
     {
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        [Display(Name = "Game Title")]
+        public string GameName { get; set; }
 
-        private IEnumerable<Move> Moves { get; set; }
-    
-        public abstract IEnumerable<Move> GetMove(string name);
 
+        public string ImagePath { get; set; }
+
+        public List<Character> Characters { get; set; }
     }
 }

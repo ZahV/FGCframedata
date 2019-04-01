@@ -1,0 +1,28 @@
+﻿@using System.Drawing.Imaging
+@model FGCframedata.View_Models.CharacterRosterFormViewModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Game</h2>
+@Html.ValidationSummary()
+@using (Html.BeginForm("Save", "CharacterRosters", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(g=>g.CharacterRoster.GameName)
+        @Html.TextBoxFor(g=>g.CharacterRoster.GameName, new {@class = "form-control"})
+        @Html.ValidationMessageFor(g=>g.CharacterRoster.GameName)
+    </div>
+    
+    <div class="form-group">
+        <label for="photo">Upload a game image</label>
+        <input type="file" class="form-control-file" name="photo" id="photo">
+    </div>
+    
+
+    
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+

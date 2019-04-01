@@ -28,3 +28,11 @@ textarea {
     width :214px ;
     height:140px;
 }
+
+.field-validation-error {
+    color: red;
+}
+
+.input-validation-error {
+    color: red;
+}

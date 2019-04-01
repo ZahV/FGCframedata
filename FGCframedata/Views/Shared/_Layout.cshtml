@@ -23,12 +23,24 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li class="dropdown">
-                        
+
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Games<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item"><a href="#">Blazblue X Tag Battle</a></li>
+                            <li class="dropdown-item"><a href="#">Dragonball FighterZ</a></li>
+                            <li class="dropdown-item"><a href="#">Mortal Kombat 11</a></li>
+                            <li class="dropdown-item"><a href="#">Mortal Kombat X</a></li>
+                            <li class="dropdown-item"><a href="#">Samurai Showdown</a></li>
+                            <li class="dropdown-item"><a href="#">Soul Calibur 6</a></li>
+                            <li class="dropdown-item"><a href="#">Street Fighter V</a></li>
+                            <li class="dropdown-item"><a href="#">Tekken 7</a></li>
+                            <li class="dropdown-item"><a href="#">Under Night In-Birth</a></li>
+                        </ul>
 
                     </li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Аdd a Game", "Index", "CharacterRosters")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

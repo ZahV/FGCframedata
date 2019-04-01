@@ -1,0 +1,31 @@
+﻿@using FGCframedata.Models
+@model  IEnumerable<FGCframedata.Models.CharacterRoster>
+@{
+    ViewBag.Title = "Games";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Games</h2>
+
+<p>
+    @Html.ActionLink("New Game", "New", "CharacterRosters", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-bordered table-hover">
+    
+    <thead>
+    <tr>
+        <th>Game Title</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var game in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(game.GameName, "Edit", "CharacterRosters", new{id = game.Id},null)</td>
+                <td>@Html.ActionLink("Delete","Delete","CharacterRosters", new{id = game.Id},null)</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace FGCframedata.Models
 {
-    public abstract class Move
+    public class Move
     {
         public int Id { get; set; }
 
@@ -20,6 +20,9 @@ namespace FGCframedata.Models
         public int? RecoveryFrames { get; set; }
         public int? FrameAdvantage { get; set; }
 
-        public abstract bool Beats(Move other);
+        public bool Beats(Move other)
+        {
+            return this.StartupFrames <= other.FrameAdvantage;
+        }
     }
 }
