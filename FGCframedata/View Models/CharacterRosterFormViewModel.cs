@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using FGCframedata.Models;
+using FGCFrameData.Models;
 
-namespace FGCframedata.View_Models
+namespace FGCFrameData.View_Models
 {
     public class CharacterRosterFormViewModel
     {

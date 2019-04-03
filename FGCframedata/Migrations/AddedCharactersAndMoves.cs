@@ -1,4 +1,4 @@
-namespace FGCframedata.Migrations
+namespace FGCFrameData.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

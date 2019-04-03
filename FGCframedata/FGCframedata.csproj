@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FGCframedata</RootNamespace>
-    <AssemblyName>FGCframedata</AssemblyName>
+    <RootNamespace>FGCFrameData</RootNamespace>
+    <AssemblyName>FGCFrameData</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -170,11 +170,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\ApplicationSignInManager.cs" />
+    <Compile Include="App_Start\ApplicationUserManager.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\EmailService.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\SmsService.cs" />
+    <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CharacterRostersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -182,33 +185,50 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903282221088_AddedInitialModels.cs" />
-    <Compile Include="Migrations\201903282221088_AddedInitialModels.Designer.cs">
-      <DependentUpon>201903282221088_AddedInitialModels.cs</DependentUpon>
+    <Compile Include="Migrations\AddedInitialModels.cs" />
+    <Compile Include="Migrations\AddedInitialModels.Designer.cs">
+      <DependentUpon>AddedInitialModels.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903290007099_AddedCharactersAndMoves.cs" />
-    <Compile Include="Migrations\201903290007099_AddedCharactersAndMoves.Designer.cs">
-      <DependentUpon>201903290007099_AddedCharactersAndMoves.cs</DependentUpon>
+    <Compile Include="Migrations\AddedCharactersAndMoves.cs" />
+    <Compile Include="Migrations\AddedCharactersAndMoves.Designer.cs">
+      <DependentUpon>AddedCharactersAndMoves.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903291706020_AddedChracterRoster.cs" />
-    <Compile Include="Migrations\201903291706020_AddedChracterRoster.Designer.cs">
-      <DependentUpon>201903291706020_AddedChracterRoster.cs</DependentUpon>
+    <Compile Include="Migrations\AddedChracterRoster.cs" />
+    <Compile Include="Migrations\AddedChracterRoster.Designer.cs">
+      <DependentUpon>AddedChracterRoster.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903300019470_AddedNotationsInCharacterRoster.cs" />
-    <Compile Include="Migrations\201903300019470_AddedNotationsInCharacterRoster.Designer.cs">
-      <DependentUpon>201903300019470_AddedNotationsInCharacterRoster.cs</DependentUpon>
+    <Compile Include="Migrations\AddedNotationsInCharacterRoster.cs" />
+    <Compile Include="Migrations\AddedNotationsInCharacterRoster.Designer.cs">
+      <DependentUpon>AddedNotationsInCharacterRoster.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="View Models\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="View Models\AddPhoneNumberViewModel.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="View Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\Character.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="View Models\ConfigureTwoFactorViewModel.cs" />
+    <Compile Include="View Models\ExternalLoginListViewModel.cs" />
+    <Compile Include="View Models\FactorViewModel.cs" />
+    <Compile Include="View Models\ForgotPasswordViewModel.cs" />
+    <Compile Include="View Models\ForgotViewModel.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="View Models\LoginViewModel.cs" />
+    <Compile Include="View Models\ManageLoginsViewModel.cs" />
+    <Compile Include="View Models\IndexViewModel.cs" />
     <Compile Include="Models\MkxCharacter.cs" />
     <Compile Include="Models\CharacterRoster.cs" />
     <Compile Include="Models\MkxVariation.cs" />
     <Compile Include="Models\Move.cs" />
+    <Compile Include="View Models\RegisterViewModel.cs" />
+    <Compile Include="View Models\ResetPasswordViewModel.cs" />
+    <Compile Include="View Models\SendCodeViewModel.cs" />
+    <Compile Include="View Models\SetPasswordViewModel.cs" />
+    <Compile Include="View Models\VerifyCodeViewModel.cs" />
+    <Compile Include="View Models\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\UploadHelper.cs" />
     <Compile Include="View Models\CharacterRosterFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -427,17 +447,17 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903282221088_AddedInitialModels.resx">
-      <DependentUpon>201903282221088_AddedInitialModels.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\AddedInitialModels.resx">
+      <DependentUpon>AddedInitialModels.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903290007099_AddedCharactersAndMoves.resx">
-      <DependentUpon>201903290007099_AddedCharactersAndMoves.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\AddedCharactersAndMoves.resx">
+      <DependentUpon>AddedCharactersAndMoves.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903291706020_AddedChracterRoster.resx">
-      <DependentUpon>201903291706020_AddedChracterRoster.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\AddedChracterRoster.resx">
+      <DependentUpon>AddedChracterRoster.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903300019470_AddedNotationsInCharacterRoster.resx">
-      <DependentUpon>201903300019470_AddedNotationsInCharacterRoster.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\AddedNotationsInCharacterRoster.resx">
+      <DependentUpon>AddedNotationsInCharacterRoster.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

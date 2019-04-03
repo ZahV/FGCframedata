@@ -4,14 +4,15 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using FGCframedata.Models;
-using FGCframedata.View_Models;
+using FGCFrameData.Models;
+using FGCFrameData.Utils;
+using FGCFrameData.View_Models;
 
-namespace FGCframedata.Controllers
+namespace FGCFrameData.Controllers
 {
     public class CharacterRostersController : Controller
     {
-
+       
         private ApplicationDbContext _context;
 
         public CharacterRostersController()
@@ -41,6 +42,7 @@ namespace FGCframedata.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(CharacterRoster characterRoster, HttpPostedFileBase photo)
         {
+            
             if (!ModelState.IsValid)
             {
                 var viewModel = new CharacterRosterFormViewModel
@@ -50,27 +52,21 @@ namespace FGCframedata.Controllers
                 return View("CharacterRosterForm", viewModel);
             }
 
-            // TODO relative path
-            // TODO fix duplicate image names
-            // TODO fixing duplicate entries
-            const string directory = @"D:\FGC Frame Data Project\FGCframedata\FGCframedata\Content\AppFile\Images\";
+            // TODO add error message for duplicates 
+           
+            var uploadHelper = new UploadHelper(Server);
 
-            
-            string filePath = null;
-
-            if (photo != null && photo.ContentLength > 0)
-            {
-                var fileName = Path.GetFileName(photo.FileName);
-
-
-
-                filePath = Path.Combine(directory, fileName);
-                photo.SaveAs(filePath);
-
-            }
-          
+            var filePath = uploadHelper.Upload(photo, nameof(CharacterRoster));
+                   
             var characterRosterInDb = _context.CharacterRosters.SingleOrDefault(c => c.Id == characterRoster.Id) ??
                                       _context.CharacterRosters.Add(characterRoster);
+
+            var characterRosterNnDbName =_context.CharacterRosters.SingleOrDefault(c => c.GameName == characterRoster.GameName);
+
+            if (characterRosterNnDbName != null)
+            {
+                return RedirectToAction("New");
+            }
 
             characterRosterInDb.GameName = characterRoster.GameName;
             if (!string.IsNullOrEmpty(filePath))

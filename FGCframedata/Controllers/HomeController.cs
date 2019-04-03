@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace FGCframedata.Controllers
+namespace FGCFrameData.Controllers
 {
     public class HomeController : Controller
     {

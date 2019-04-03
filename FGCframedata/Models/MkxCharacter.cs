@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace FGCframedata.Models
+namespace FGCFrameData.Models
 {
     public class MkxCharacter: Character
     {

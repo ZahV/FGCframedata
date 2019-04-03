@@ -1,4 +1,4 @@
-﻿namespace FGCframedata.Models
+﻿namespace FGCFrameData.Models
 {
     public enum MkxVariation
     {

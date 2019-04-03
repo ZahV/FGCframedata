@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace FGCframedata
+namespace FGCFrameData
 {
     public class FilterConfig
     {

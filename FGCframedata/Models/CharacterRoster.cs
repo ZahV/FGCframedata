@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace FGCframedata.Models
+namespace FGCFrameData.Models
 {
     public class CharacterRoster
     {

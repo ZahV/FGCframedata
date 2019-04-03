@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FGCframedata", "FGCframedata\FGCframedata.csproj", "{7FDC149E-24FE-41C1-8CAA-891FE8083E68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FGCFrameData.Tests", "FCGFrameData.Tests\FGCFrameData.Tests.csproj", "{493FBDA5-321C-4E20-98B7-D0BEA0AA7A39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7FDC149E-24FE-41C1-8CAA-891FE8083E68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FDC149E-24FE-41C1-8CAA-891FE8083E68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FDC149E-24FE-41C1-8CAA-891FE8083E68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{493FBDA5-321C-4E20-98B7-D0BEA0AA7A39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{493FBDA5-321C-4E20-98B7-D0BEA0AA7A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{493FBDA5-321C-4E20-98B7-D0BEA0AA7A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{493FBDA5-321C-4E20-98B7-D0BEA0AA7A39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
