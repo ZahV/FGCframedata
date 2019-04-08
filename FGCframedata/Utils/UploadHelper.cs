@@ -11,15 +11,17 @@ namespace FGCFrameData.Utils
     {
         internal const string UploadDirectory = @"~\Content\AppFile\Images\";
 
+        private readonly string[] _validFileExtensions = { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".tiff" };
+
         private HttpServerUtilityBase Server { get; }
 
-        // TODO file type limitation
+       
         public UploadHelper(HttpServerUtilityBase server)
         {
             Server = server;
         }
         
-        // TODO fix duplicate image names
+       
         public string Upload(HttpPostedFileBase file, string folder = null)
         {
             if (file == null)
@@ -36,12 +38,20 @@ namespace FGCFrameData.Utils
 
             var fileName = Path.GetFileNameWithoutExtension(file.FileName) + Path.GetExtension(file.FileName);
 
-            filePath = Path.Combine(Server.MapPath(UploadDirectory), fileName);
+            if (_validFileExtensions.Contains(Path.GetExtension(file.FileName)))
+            {
+                filePath = Path.Combine(Server.MapPath(UploadDirectory), fileName);
+            }
+            else
+            {
+                throw new ArrayTypeMismatchException("Invalid file extension type.");
+            }
+
+            
             int counter = 0;
 
             while (File.Exists(filePath))
             {
-                
                 counter += 1;
 
                 fileName = Path.GetFileNameWithoutExtension(file.FileName) + "(" + counter + ")" + Path.GetExtension(file.FileName);
@@ -51,7 +61,10 @@ namespace FGCFrameData.Utils
 
             file.SaveAs(filePath);
 
-            return filePath;
+            var contentUri = new Uri(Server.MapPath("~/"));
+            var fileUri = new Uri(filePath);
+
+            return contentUri.MakeRelativeUri(fileUri).ToString();
         }
     }
 }
