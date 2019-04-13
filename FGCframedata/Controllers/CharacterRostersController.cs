@@ -78,7 +78,7 @@ namespace FGCFrameData.Controllers
             return RedirectToAction("Index", "CharacterRosters");
         }
 
-        [HttpPost]
+        
         public ActionResult Edit(int id)
         {
             var characterRoster = _context.CharacterRosters.SingleOrDefault(c => c.Id == id);
@@ -95,8 +95,7 @@ namespace FGCFrameData.Controllers
             return View("CharacterRosterForm",viewModel);
         }
 
-        // TODO confirmation POP-up using Bootstrap
-        [HttpPost]
+        
         public ActionResult Delete(int id)
         {
             var characterRosterInDb = _context.CharacterRosters.SingleOrDefault(c => c.Id == id);
@@ -104,13 +103,6 @@ namespace FGCFrameData.Controllers
             if (characterRosterInDb == null)
             {
                 return HttpNotFound();
-            }
-
-            var characterRosterImage = Server.MapPath('/' + characterRosterInDb.ImagePath);
-
-            if (System.IO.File.Exists(characterRosterImage))
-            {
-                System.IO.File.Delete(characterRosterImage);
             }
 
             _context.CharacterRosters.Remove(characterRosterInDb);
