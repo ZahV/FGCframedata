@@ -92,10 +92,10 @@ namespace FGCFrameData.Controllers
             {
                 CharacterRoster = characterRoster
             };
-            return View("CharacterRosterForm",viewModel);
+            return View("CharacterRosterForm", viewModel);
         }
 
-        // TODO confirmation POP-up using Bootstrap
+        
         [HttpPost]
         public ActionResult Delete(int id)
         {

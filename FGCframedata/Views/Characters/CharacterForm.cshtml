@@ -1,0 +1,34 @@
+﻿@model FGCFrameData.View_Models.CharacterFormViewModel
+
+@{
+    ViewBag.Title = "CharacterForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Character</h2>
+@Html.ValidationSummary()
+@using (Html.BeginForm("Save", "Characters", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(g => g.Character.Name)
+        @Html.TextBoxFor(g => g.Character.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(g => g.Character.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(g => g.Character.CharacterRosterId)
+        @Html.DropDownListFor(g => g.Character.CharacterRosterId, new SelectList(Model.CharacterRoster,"Id","GameName"),"",new { @class = "form-control" })
+        @Html.ValidationMessageFor(g => g.Character.CharacterRosterId)
+    </div>
+
+    <div class="form-group">
+        <label for="photo">Upload a character image</label>
+        <input type="file" class="form-control-file" name="photo" id="photo">
+    </div>
+
+
+    @Html.HiddenFor(c=>c.Character.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+

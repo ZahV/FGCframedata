@@ -1,0 +1,85 @@
+﻿@using FGCFrameData.Models
+@model IEnumerable<Character>
+
+@{
+	ViewBag.Title = "Characters";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Characters</h2>
+<p>
+	@Html.ActionLink("New Character", "New", "Characters", null, new { @class = "btn btn-primary" })
+</p>
+
+
+<table class="table table-bordered table-hover">
+	
+	<thead>
+	<tr>
+		<th>Character Name</th>
+		<th>Game Name</th>
+		<th>Delete</th>
+	</tr>
+	</thead>
+	<tbody>
+	@foreach (var character in Model)
+	{
+		<tr>
+			<td>@Html.ActionLink(character.Name, "Edit", "Characters", new { id = character.Id }, null)</td>
+			<td>@character.CharacterRoster.GameName</td>
+			<td>@Html.ActionLink("Delete", "Delete", new { id= character.Id }, new { @class="element",
+			   @data_toggle = "modal", @data_target = "#deleteModal",
+			   @data_id = character.Id})</td>
+		</tr>
+
+	}
+	</tbody>
+
+</table>
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Delete Item</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>You are about to delete this item. Are you sure?</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" id="Delete">Save changes</button>
+			</div>
+		</div>
+	</div>
+	@Html.Hidden("itemid", "", new { id = "itemid" })
+</div>
+
+@section scripts
+{
+	<script>
+		$(function(){
+			$('.element').click(function (e) {
+				e.preventDefault();
+
+				$('#deleteModal').modal('show');
+				
+				var id = $(this).data('id');
+				$('#itemid').val(id);
+				
+			});
+
+			$('#Delete').click(function () {
+				var id = $('#itemid').val();
+
+				$.post("@Url.Action("Delete", "Characters")", { id: id }, function () {
+					location.reload();
+				});
+
+				$('#deleteModal').modal('hide');
+			});
+		});
+	</script>
+}

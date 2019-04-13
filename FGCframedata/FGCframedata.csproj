@@ -180,10 +180,27 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CharacterRostersController.cs" />
+    <Compile Include="Controllers\CharactersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904081623330_AddedImagePathToCharacters.cs" />
+    <Compile Include="Migrations\201904081623330_AddedImagePathToCharacters.Designer.cs">
+      <DependentUpon>201904081623330_AddedImagePathToCharacters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904131656200_AddedCharacterRosterID.cs" />
+    <Compile Include="Migrations\201904131656200_AddedCharacterRosterID.Designer.cs">
+      <DependentUpon>201904131656200_AddedCharacterRosterID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904131858199_Revert.cs" />
+    <Compile Include="Migrations\201904131858199_Revert.Designer.cs">
+      <DependentUpon>201904131858199_Revert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904131907248_Revert1.cs" />
+    <Compile Include="Migrations\201904131907248_Revert1.Designer.cs">
+      <DependentUpon>201904131907248_Revert1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\AddedInitialModels.cs" />
     <Compile Include="Migrations\AddedInitialModels.Designer.cs">
@@ -202,6 +219,7 @@
       <DependentUpon>AddedNotationsInCharacterRoster.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="View Models\CharacterFormViewModel.cs" />
     <Compile Include="View Models\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="View Models\AddPhoneNumberViewModel.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -216,7 +234,6 @@
     <Compile Include="View Models\LoginViewModel.cs" />
     <Compile Include="View Models\ManageLoginsViewModel.cs" />
     <Compile Include="View Models\IndexViewModel.cs" />
-    <Compile Include="Models\MkxCharacter.cs" />
     <Compile Include="Models\CharacterRoster.cs" />
     <Compile Include="Models\MkxVariation.cs" />
     <Compile Include="Models\Move.cs" />
@@ -320,11 +337,12 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\CharacterRosters\Index.cshtml" />
     <Content Include="Views\CharacterRosters\CharacterRosterForm.cshtml" />
+    <Content Include="Views\Characters\CharacterForm.cshtml" />
+    <Content Include="Views\Characters\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\AppFile\Images\" />
-    <Folder Include="Views\Characters\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -335,6 +353,18 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201904081623330_AddedImagePathToCharacters.resx">
+      <DependentUpon>201904081623330_AddedImagePathToCharacters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904131656200_AddedCharacterRosterID.resx">
+      <DependentUpon>201904131656200_AddedCharacterRosterID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904131858199_Revert.resx">
+      <DependentUpon>201904131858199_Revert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904131907248_Revert1.resx">
+      <DependentUpon>201904131907248_Revert1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\AddedInitialModels.resx">
       <DependentUpon>AddedInitialModels.cs</DependentUpon>
     </EmbeddedResource>
