@@ -1,31 +1,84 @@
-﻿@using FGCFrameData.Models
+﻿@using System.Security.Policy
+@using FGCFrameData.Models
 @model  IEnumerable<FGCFrameData.Models.CharacterRoster>
 @{
-    ViewBag.Title = "Games";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Games";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Games</h2>
 
 <p>
-    @Html.ActionLink("New Game", "New", "CharacterRosters", null, new { @class = "btn btn-primary" })
+	@Html.ActionLink("New Game", "New", "CharacterRosters", null, new { @class = "btn btn-primary" })
 </p>
 
+
 <table class="table table-bordered table-hover">
-    
-    <thead>
-    <tr>
-        <th>Game Title</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-        @foreach (var game in Model)
-        {
-            <tr>
-                <td>@Html.ActionLink(game.GameName, "Edit", "CharacterRosters", new{id = game.Id},null)</td>
-                <td>@Html.ActionLink("Delete","Delete","CharacterRosters", new{id = game.Id},null)</td>
-            </tr>
-        }
-    </tbody>
+	
+	<thead>
+	<tr>
+		<th>Game Title</th>
+		<th></th>
+	</tr>
+	</thead>
+	<tbody>
+		@foreach (var game in Model)
+		{
+			<tr>
+				<td>@Html.ActionLink(game.GameName, "Edit", "CharacterRosters", new { id = game.Id }, null)</td>
+				<td>@Html.ActionLink("Delete", "Delete", new { id=game.Id }, new { @class="element", 
+						@data_toggle = "modal", @data_target = "#deleteModal", 
+						@data_id = game.Id})</td>
+			</tr>
+
+		}
+		</tbody>
+
 </table>
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Delete Item</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>You are about to delete this item. Are you sure?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="Delete">Save changes</button>
+				</div>
+			</div>
+		</div>
+		@Html.Hidden("itemid", "", new { id = "itemid" })
+</div>
+
+@section scripts
+{
+	<script>
+		$(function(){
+			$('.element').click(function (e) {
+				e.preventDefault();
+
+				$('#deleteModal').modal('show');
+				
+				var id = $(this).data('id');
+				$('#itemid').val(id);
+				
+			});
+
+			$('#Delete').click(function () {
+				var id = $('#itemid').val();
+
+				$.post("@Url.Action("Delete", "CharacterRosters")", { id: id }, function () {
+					location.reload();
+				});
+
+				$('#deleteModal').modal('hide');
+			});
+		});
+	</script>
+}

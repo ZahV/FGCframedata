@@ -1,47 +1,21 @@
-﻿@{
+﻿@using FGCFrameData.Models
+@model IEnumerable<CharacterRoster>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
+        @foreach (var roster in Model)
+        {
+            <div class="col-md-4">
 
-            <a href="#"><img src="\Content\Images\mkxlogo.png" title="Mortal Kombat X"  /></a>
+                <a href="#"><img src="@roster.ImagePath" title="@roster.GameName"/></a>
 
-        </div>
-        <div class="col-md-4">
-
-            <a href="#"><img src="\Content\Images\SFV-Arcade-Edition1.jpg" title="Street Fighter V"  /></a>
-
-        </div>
-        <div class="col-md-4">
-
-            <a href="#"><img src="\Content\Images\Tekken7.jpg" title="Tekken 7" /></a>
-        </div>
-        <div class="col-md-4">
-
-            <a href="#"><img src="\Content\Images\MK11.png" title="Mortal Kombat 11" /></a>
-        </div>
-        <div class="col-md-4">
-
-            <a href="#"><img src="\Content\Images\SoulCalibur6.png" title="Soul Calibur VI"  /></a>
-        </div>
-        <div class="col-md-4">
-
-            <a href="#"><img src="\Content\Images\unist214.png" title="Under Night In-Birth"  /></a>
-        </div>
-        <div class="col-md-4">
-
-            <a href="#"><img src="\Content\Images\dragonballfighterz.jpg" title="Dragon Ball FighterZ"  /></a>
-        </div>
-        <div class="col-md-4">
-
-            <a href="#"><img src="\Content\Images\BBTAG.png" title="Blazblue Cross Tag Battle"  /></a>
-        </div>
-        <div class="col-md-4">
-
-            <a href="#"><img src="\Content\Images\SamuraiShowdown.png" title="Samurai Showdown"  /></a>
-        </div>
+            </div>
+        }
     </div>
 </div>
+

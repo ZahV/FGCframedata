@@ -88,6 +88,7 @@ namespace FGCFrameData.Tests
             var uploadHelper = new UploadHelper(server);
 
             var duplicateFilePath = server.MapPath("~" + duplicateFileName);
+            
             File.Create(duplicateFilePath).Dispose();
 
             UploadedFileMock mockFile = new UploadedFileMock();
@@ -95,10 +96,11 @@ namespace FGCFrameData.Tests
             mockFile.SetFileName(duplicateFileName);
 
             var filePath = uploadHelper.Upload(mockFile);
+          
 
             File.Delete(duplicateFilePath);
 
-            Assert.AreEqual(filePath, server.MapPath(UploadHelper.UploadDirectory + "Duplicate image1.png"));
+            Assert.AreEqual(filePath, server.MapPath(UploadHelper.UploadDirectory + "Duplicate image(1).png"));
         }
     }
 }
