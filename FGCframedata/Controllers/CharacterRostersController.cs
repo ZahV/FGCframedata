@@ -78,7 +78,7 @@ namespace FGCFrameData.Controllers
             return RedirectToAction("Index", "CharacterRosters");
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             var characterRoster = _context.CharacterRosters.SingleOrDefault(c => c.Id == id);

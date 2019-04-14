@@ -59,8 +59,6 @@ namespace FGCFrameData.Controllers
                 return View("CharacterForm", viewModel);
             }
 
-
-
             var uploadHelper = new UploadHelper(Server);
 
             var filePath = uploadHelper.Upload(photo, nameof(Character));
@@ -81,11 +79,12 @@ namespace FGCFrameData.Controllers
                 characterInDb.ImagePath = filePath;
             }
 
+            
             _context.SaveChanges();
             return RedirectToAction("Index", "Characters");
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             var character = _context.Characters.SingleOrDefault(c => c.Id == id);
@@ -97,7 +96,8 @@ namespace FGCFrameData.Controllers
 
             var viewModel = new CharacterFormViewModel()
             {
-                Character = character
+                Character = character,
+                CharacterRoster = _context.CharacterRosters.ToList()
             };
             return View("CharacterForm", viewModel);
         }

@@ -183,6 +183,7 @@
     <Compile Include="Controllers\CharactersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MovesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -201,6 +202,10 @@
     <Compile Include="Migrations\201904131907248_Revert1.cs" />
     <Compile Include="Migrations\201904131907248_Revert1.Designer.cs">
       <DependentUpon>201904131907248_Revert1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904142119301_AddedMoves.cs" />
+    <Compile Include="Migrations\201904142119301_AddedMoves.Designer.cs">
+      <DependentUpon>201904142119301_AddedMoves.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\AddedInitialModels.cs" />
     <Compile Include="Migrations\AddedInitialModels.Designer.cs">
@@ -237,6 +242,7 @@
     <Compile Include="Models\CharacterRoster.cs" />
     <Compile Include="Models\MkxVariation.cs" />
     <Compile Include="Models\Move.cs" />
+    <Compile Include="View Models\MoveFormViewModel.cs" />
     <Compile Include="View Models\RegisterViewModel.cs" />
     <Compile Include="View Models\ResetPasswordViewModel.cs" />
     <Compile Include="View Models\SendCodeViewModel.cs" />
@@ -339,6 +345,8 @@
     <Content Include="Views\CharacterRosters\CharacterRosterForm.cshtml" />
     <Content Include="Views\Characters\CharacterForm.cshtml" />
     <Content Include="Views\Characters\Index.cshtml" />
+    <Content Include="Views\Moves\Index.cshtml" />
+    <Content Include="Views\Moves\MoveForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -364,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904131907248_Revert1.resx">
       <DependentUpon>201904131907248_Revert1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904142119301_AddedMoves.resx">
+      <DependentUpon>201904142119301_AddedMoves.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\AddedInitialModels.resx">
       <DependentUpon>AddedInitialModels.cs</DependentUpon>

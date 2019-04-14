@@ -29,6 +29,13 @@
                 <li class="active nav-link">
                     @Html.ActionLink("Games", "Index", "CharacterRosters")
                 </li>
+                <li class="active nav-link">
+                    @Html.ActionLink("Characters", "Index", "Characters")
+                </li>
+
+                <li class="active nav-link">
+                    @Html.ActionLink("Moves", "Index", "Moves")
+                </li>
             </ul>
             @Html.Partial("_LoginPartial")
         </div>
@@ -41,6 +48,7 @@
         </footer>
     </div>
     @Scripts.Render("~/Scripts/jquery-3.3.1.js")
+    @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/bootstrap.js"></script>
     
     @RenderSection("scripts", required: false)

@@ -15,6 +15,10 @@ namespace FGCFrameData.Models
         [Required]
         public string Input { get; set; }
 
+        public Character Character { get; set; }
+
+        public int CharacterId { get; set; }
+
         public int StartupFrames { get; set; }
         public int ActiveFrames { get; set; }
         public int? RecoveryFrames { get; set; }

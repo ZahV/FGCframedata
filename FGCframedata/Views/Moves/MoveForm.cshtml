@@ -1,0 +1,57 @@
+﻿@using FGCFrameData.Models
+@model FGCFrameData.View_Models.MoveFormViewModel
+@{
+    ViewBag.Title = "MoveForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Move</h2>
+@Html.ValidationSummary()
+@using (Html.BeginForm("Save", "Moves", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(g => g.Move.Name)
+        @Html.TextBoxFor(g => g.Move.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(g => g.Move.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(g => g.Move.CharacterId)
+        @Html.DropDownListFor(g => g.Move.CharacterId, new SelectList(Model.Character, "Id", "Name"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(g => g.Move.CharacterId)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(g => g.Move.Input)
+        @Html.TextBoxFor(g => g.Move.Input, new { @class = "form-control" })
+        @Html.ValidationMessageFor(g => g.Move.Input)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(g => g.Move.StartupFrames)
+        @Html.TextBoxFor(g => g.Move.StartupFrames, new { @class = "form-control" })
+        @Html.ValidationMessageFor(g => g.Move.StartupFrames)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(g => g.Move.ActiveFrames)
+        @Html.TextBoxFor(g => g.Move.ActiveFrames, new { @class = "form-control" })
+        @Html.ValidationMessageFor(g => g.Move.ActiveFrames)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(g => g.Move.RecoveryFrames)
+        @Html.TextBoxFor(g => g.Move.RecoveryFrames, new { @class = "form-control" })
+        @Html.ValidationMessageFor(g => g.Move.RecoveryFrames)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(g => g.Move.FrameAdvantage)
+        @Html.TextBoxFor(g => g.Move.FrameAdvantage, new { @class = "form-control" })
+        @Html.ValidationMessageFor(g => g.Move.FrameAdvantage)
+    </div>
+
+    @Html.HiddenFor(c=>c.Move.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
