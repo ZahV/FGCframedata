@@ -1,6 +1,8 @@
 ﻿body {
     padding-bottom: 20px;
     background-color: black;
+    color: white;
+    text-shadow: black 0.1em 0.1em 0.2em;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -34,4 +36,8 @@ textarea {
 
 .input-validation-error {
     color: red;
+}
+
+.modal-content{
+    background-color: grey;
 }

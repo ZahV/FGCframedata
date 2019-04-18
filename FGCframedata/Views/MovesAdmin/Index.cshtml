@@ -7,7 +7,7 @@
 
 <h2>Moves</h2>
 <p>
-	@Html.ActionLink("New Move", "New", "Moves", null, new { @class = "btn btn-primary" })
+	@Html.ActionLink("New Move", "New", "MovesAdmin", null, new { @class = "btn btn-primary" })
 </p>
 <table class="table table-bordered table-hover">
 	
@@ -16,6 +16,7 @@
 		<th>Move Name</th>
 		<th>Input</th>
 		<th>Character Name</th>
+		<th>Game ID</th>
 		<th>Delete</th>
 	</tr>
 	</thead>
@@ -23,9 +24,10 @@
 	@foreach (var move in Model)
 	{
 		<tr>
-			<td>@Html.ActionLink(move.Name, "Edit", "Moves", new { id = move.Id }, null)</td>
+			<td>@Html.ActionLink(move.Name, "Edit", "MovesAdmin", new { id = move.Id }, null)</td>
 			<td>@move.Input</td>
 			<td>@move.Character.Name</td>
+			<td>@move.Character.CharacterRosterId</td>
 			<td>@Html.ActionLink("Delete", "Delete", new { id= move.Id }, new { @class="element",
 					@data_toggle = "modal", @data_target = "#deleteModal",
 					@data_id = move.Id})</td>
@@ -73,7 +75,7 @@
 			$('#Delete').click(function () {
 				var id = $('#itemid').val();
 
-				$.post("@Url.Action("Delete", "Moves")", { id: id }, function () {
+				$.post("@Url.Action("Delete", "MovesAdmin")", { id: id }, function () {
 					location.reload();
 				});
 

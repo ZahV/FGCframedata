@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FGCFrameData.Models;
+using FGCFrameData.View_Models;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using FGCFrameData.Models;
-using FGCFrameData.Utils;
-using FGCFrameData.View_Models;
 
 namespace FGCFrameData.Controllers
 {
-    public class MovesController : Controller
+    public class MovesAdminController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public MovesController()
+        public MovesAdminController()
         {
             _context = new ApplicationDbContext();
         }
@@ -64,15 +60,15 @@ namespace FGCFrameData.Controllers
 
             var moveInDbName = _context.Moves.SingleOrDefault(c => c.Name == move.Name);
 
-            if (moveInDbName != null)
+            if (moveInDbName != null && moveInDbName.CharacterId == move.CharacterId)
             {
                 return RedirectToAction("New");
             }
 
             moveInDb.Name = move.Name;
-           
+
             _context.SaveChanges();
-            return RedirectToAction("Index", "Moves");
+            return RedirectToAction("Index", "MovesAdmin");
         }
 
         [HttpGet]
@@ -107,7 +103,7 @@ namespace FGCFrameData.Controllers
             _context.Moves.Remove(moveInDb);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Moves");
+            return RedirectToAction("Index", "MovesAdmin");
         }
     }
 }

@@ -12,7 +12,7 @@
         {
             <div class="col-md-4">
 
-                <a href="#"><img src="@roster.ImagePath" title="@roster.GameName"/></a>
+                <a href="@Url.Action("Index","CharacterRosters",new {id = roster.Id})"><img src="@roster.ImagePath" alt="@roster.GameName"/></a>
 
             </div>
         }

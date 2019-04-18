@@ -7,7 +7,7 @@
 
 <h2>New Character</h2>
 @Html.ValidationSummary()
-@using (Html.BeginForm("Save", "Characters", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Save", "CharactersAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="form-group">
         @Html.LabelFor(g => g.Character.Name)

@@ -179,11 +179,13 @@
     <Compile Include="App_Start\SmsService.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CharacterRostersAdminController.cs" />
     <Compile Include="Controllers\CharacterRostersController.cs" />
+    <Compile Include="Controllers\CharactersAdminController.cs" />
     <Compile Include="Controllers\CharactersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MovesController.cs" />
+    <Compile Include="Controllers\MovesAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -206,6 +208,10 @@
     <Compile Include="Migrations\201904142119301_AddedMoves.cs" />
     <Compile Include="Migrations\201904142119301_AddedMoves.Designer.cs">
       <DependentUpon>201904142119301_AddedMoves.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904181940453_AddedNotationsToMoves.cs" />
+    <Compile Include="Migrations\201904181940453_AddedNotationsToMoves.Designer.cs">
+      <DependentUpon>201904181940453_AddedNotationsToMoves.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\AddedInitialModels.cs" />
     <Compile Include="Migrations\AddedInitialModels.Designer.cs">
@@ -341,12 +347,14 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\CharacterRostersAdmin\Index.cshtml" />
+    <Content Include="Views\CharacterRostersAdmin\CharacterRosterForm.cshtml" />
+    <Content Include="Views\CharactersAdmin\CharacterForm.cshtml" />
+    <Content Include="Views\CharactersAdmin\Index.cshtml" />
+    <Content Include="Views\MovesAdmin\Index.cshtml" />
+    <Content Include="Views\MovesAdmin\MoveForm.cshtml" />
     <Content Include="Views\CharacterRosters\Index.cshtml" />
-    <Content Include="Views\CharacterRosters\CharacterRosterForm.cshtml" />
-    <Content Include="Views\Characters\CharacterForm.cshtml" />
     <Content Include="Views\Characters\Index.cshtml" />
-    <Content Include="Views\Moves\Index.cshtml" />
-    <Content Include="Views\Moves\MoveForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -375,6 +383,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904142119301_AddedMoves.resx">
       <DependentUpon>201904142119301_AddedMoves.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904181940453_AddedNotationsToMoves.resx">
+      <DependentUpon>201904181940453_AddedNotationsToMoves.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\AddedInitialModels.resx">
       <DependentUpon>AddedInitialModels.cs</DependentUpon>

@@ -7,7 +7,7 @@
 
 <h2>New Game</h2>
 @Html.ValidationSummary()
-@using (Html.BeginForm("Save", "CharacterRosters", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Save", "CharacterRostersAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="form-group">
         @Html.LabelFor(g=>g.CharacterRoster.GameName)
