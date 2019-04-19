@@ -1,5 +1,6 @@
 ﻿@using FGCFrameData.Models
-@model IEnumerable<Character>
+@using System.Web.Hosting
+@model List<Character>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,15 +9,24 @@
 <h2>Choose your fighter</h2>
 
 <div class="container">
-<div class="row">
-    @foreach (var character in Model)
-    {
-        <div class="col-md-4">
+    <div class="row">
+        @foreach (var character in Model)
+        {
 
-            <a href="@Url.Action("Index","Characters",new {id = character.Id})"><img src="@character.ImagePath" alt="@character.Name"/></a>
+            <div class="col-md-4">
+                <a href="@Url.Action("Index","Characters",new {id = character.Id})"><img src="@("/" + character.ImagePath)" alt="@character.Name" /></a>
+            </div>
 
-        </div>
-    }
+            <div id="characterMoves"></div>
+
+
+        }
+    </div>
 </div>
-</div>
+@section scripts {
+    <script type="text/javascript">
+        $("#characterMoves").load("/Characters/Index/1");
+    </script>
+}
+
 

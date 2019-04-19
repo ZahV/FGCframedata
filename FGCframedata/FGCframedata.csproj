@@ -231,6 +231,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="View Models\CharacterFormViewModel.cs" />
+    <Compile Include="View Models\MovesViewModel.cs" />
     <Compile Include="View Models\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="View Models\AddPhoneNumberViewModel.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />

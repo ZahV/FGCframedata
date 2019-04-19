@@ -1,33 +1,35 @@
-﻿@model IEnumerable<FGCFrameData.Models.Move>
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@using FGCFrameData.View_Models
+@model MovesViewModel
 
-<h2></h2>
-
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Input</th>
-            <th>Startup Frames</th>
-            <th>Active Frames</th>
-            <th>Recovery Frames</th>
-            <th>Frame Advantage</th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach (var move in Model)
-    {
-        <tr>
-            <td>@move.Name</td>
-            <td>@move.Input</td>
-            <td>@move.StartupFrames</td>
-            <td>@move.ActiveFrames</td>
-            <td>@move.RecoveryFrames</td>
-            <td>@move.FrameAdvantage</td>
-        </tr>
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
     }
-    </tbody>
-</table>
+
+    <h2>@Model.CharacterName</h2>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Input</th>
+                <th>Startup Frames</th>
+                <th>Active Frames</th>
+                <th>Recovery Frames</th>
+                <th>Frame Advantage</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var move in Model.Moves)
+            {
+                <tr>
+                    <td>@move.Name</td>
+                    <td>@move.Input</td>
+                    <td>@move.StartupFrames</td>
+                    <td>@move.ActiveFrames</td>
+                    <td>@move.RecoveryFrames</td>
+                    <td>@move.FrameAdvantage</td>
+                </tr>
+            }
+        </tbody>
+    </table>

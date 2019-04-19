@@ -1,4 +1,5 @@
 ﻿using FGCFrameData.Models;
+using FGCFrameData.View_Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -19,21 +20,14 @@ namespace FGCFrameData.Controllers
             _context.Dispose();
         }
 
-        // GET: CharacterRosters/1
+        // GET: character/1
         public ActionResult Index(int id)
         {
-            var moveList = new List<Move>();
-            var moves = _context.Moves.ToList();
+            
+            var moves = _context.Moves.Where(m=>m.CharacterId == id).ToList();
+            var characterName = _context.Characters.Single(c => c.Id == id).Name;
 
-            foreach (var move in moves)
-            {
-                if (move.CharacterId == id)
-                {
-                    moveList.Add(move);
-                }
-
-            }
-            return View(moveList);
+            return View(new MovesViewModel(moves, characterName));
         }
     }
 }

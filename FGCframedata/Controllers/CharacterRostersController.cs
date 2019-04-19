@@ -23,18 +23,10 @@ namespace FGCFrameData.Controllers
         // GET: CharacterRosters/1
         public ActionResult Index(int id)
         {
-            var characterList = new List<Character>();
-            var characters = _context.Characters.ToList();
-
-            foreach (var character in characters)
-            {
-                if (character.CharacterRosterId == id)
-                {
-                    characterList.Add(character);
-                }
-
-            }
-            return View(characterList);
+          
+            var characters = _context.Characters.Where(c=>c.CharacterRosterId == id).ToList();
+         
+            return View(characters);
         }
     }
 }
