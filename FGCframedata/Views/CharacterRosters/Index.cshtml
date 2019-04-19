@@ -13,8 +13,8 @@
         @foreach (var character in Model)
         {
 
-            <div class="col-md-4">
-                <a href="@Url.Action("Index","Characters",new {id = character.Id})"><img src="@("/" + character.ImagePath)" alt="@character.Name" /></a>
+            <div class="col-md-4" >
+                <a href="@Url.Action("Index","Characters",new {id = character.Id})" id="character1" data-url="@Url.Action("Index","Characters", new {id = character.Id})"><img src="@("/" + character.ImagePath)" alt="@character.Name" /></a>
             </div>
 
             <div id="characterMoves"></div>
@@ -23,9 +23,23 @@
         }
     </div>
 </div>
+
+
 @section scripts {
     <script type="text/javascript">
-        $("#characterMoves").load("/Characters/Index/1");
+        $("#character1").on("click",
+            function(evt) {
+                evt.preventDefault();
+                evt.stopPropagation();
+
+                var $characterMoves = $("#characterMoves"),
+                    url = $(this).data("url");
+
+                $.get(url,
+                    function(data) {
+                        $characterMoves.replaceWith(data);
+                    });
+            })
     </script>
 }
 

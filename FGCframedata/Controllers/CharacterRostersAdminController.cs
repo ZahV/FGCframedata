@@ -49,12 +49,6 @@ namespace FGCFrameData.Controllers
                 return View("CharacterRosterForm", viewModel);
             }
 
-
-
-            var uploadHelper = new UploadHelper(Server);
-
-            var filePath = uploadHelper.Upload(photo, nameof(CharacterRoster));
-
             var characterRosterInDb = _context.CharacterRosters.SingleOrDefault(c => c.Id == characterRoster.Id) ??
                                       _context.CharacterRosters.Add(characterRoster);
 
@@ -67,10 +61,18 @@ namespace FGCFrameData.Controllers
 
             characterRosterInDb.GameName = characterRoster.GameName;
 
-            if (!string.IsNullOrEmpty(filePath))
+            var uploadHelper = new UploadHelper(Server);
+
+            if (photo !=null)
             {
-                characterRosterInDb.ImagePath = filePath;
+                var filePath = uploadHelper.Upload(photo, nameof(CharacterRoster));
+
+                if (!string.IsNullOrEmpty(filePath))
+                {
+                    characterRosterInDb.ImagePath = filePath;
+                }
             }
+
 
             _context.SaveChanges();
             return RedirectToAction("Index", "CharacterRostersAdmin");

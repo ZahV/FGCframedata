@@ -1,6 +1,5 @@
 ﻿using FGCFrameData.Models;
 using FGCFrameData.View_Models;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -23,9 +22,14 @@ namespace FGCFrameData.Controllers
         // GET: character/1
         public ActionResult Index(int id)
         {
-            
-            var moves = _context.Moves.Where(m=>m.CharacterId == id).ToList();
+
+            var moves = _context.Moves.Where(m => m.CharacterId == id).ToList();
             var characterName = _context.Characters.Single(c => c.Id == id).Name;
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("PartialFrameTable", new MovesViewModel(moves, characterName));
+            }
 
             return View(new MovesViewModel(moves, characterName));
         }

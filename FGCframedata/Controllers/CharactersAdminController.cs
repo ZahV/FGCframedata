@@ -60,7 +60,7 @@ namespace FGCFrameData.Controllers
             var characterInDb = _context.Characters.SingleOrDefault(c => c.Id == character.Id) ??
                                       _context.Characters.Add(character);
 
-            var characterInDbName = _context.Characters.SingleOrDefault(c => c.Name == character.Name);
+            var characterInDbName = _context.Characters.FirstOrDefault(c => c.Name == character.Name);
 
             if (characterInDbName != null && characterInDbName.CharacterRosterId == character.CharacterRosterId)
             {
@@ -71,7 +71,8 @@ namespace FGCFrameData.Controllers
 
             var uploadHelper = new UploadHelper(Server);
 
-            if (photo != null) {
+            if (photo != null)
+            {
 
                 var filePath = uploadHelper.Upload(photo, nameof(Character));
 
