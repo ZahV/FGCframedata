@@ -58,7 +58,7 @@ namespace FGCFrameData.Controllers
             var moveInDb = _context.Moves.SingleOrDefault(c => c.Id == move.Id) ??
                                       _context.Moves.Add(move);
 
-            var moveInDbName = _context.Moves.SingleOrDefault(c => c.Name == move.Name);
+            var moveInDbName = _context.Moves.FirstOrDefault(c => c.Name == move.Name);
 
             if (moveInDbName != null && moveInDbName.CharacterId == move.CharacterId)
             {

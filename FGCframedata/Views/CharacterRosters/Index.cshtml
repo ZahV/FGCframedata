@@ -6,40 +6,84 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Choose your fighter</h2>
+<h2 id="choose">SELECT YOUR FIGHTER</h2>
 
 <div class="container">
     <div class="row">
-        @foreach (var character in Model)
-        {
-
-            <div class="col-md-4" >
-                <a href="@Url.Action("Index","Characters",new {id = character.Id})" id="character1" data-url="@Url.Action("Index","Characters", new {id = character.Id})"><img src="@("/" + character.ImagePath)" alt="@character.Name" /></a>
+        <div class="col-6">
+            <div id="characterRoster0">
+                @foreach (var character in Model)
+                {
+                    <div class="characterIconContainer">
+                        <a class="characterIcon" id="character_@character.Id" href="javascript:void(0);" onclick="showFrameData(@character.Id, 0)"><img src="@("/" + character.ImagePath)" alt="@character.Name"/></a>
+                    </div>
+                }
             </div>
-
-            <div id="characterMoves"></div>
-
-
-        }
+            <div id="button0">
+                <button type="button" class="btn-primary">Select new character</button>
+            </div>
+            <div id="characterMoves0"></div>
+        </div>
+        <div class="col-6">
+            <div id="characterRoster1">
+                @foreach (var character in Model)
+                {
+                    <div class="characterIconContainer">
+                        <a class="characterIcon" id="character_@character.Id" href="javascript:void(0);" onclick="showFrameData(@character.Id, 1)"><img src="@("/" + character.ImagePath)" alt="@character.Name" /></a>
+                    </div>
+                }
+            </div>
+            <div id="button1">
+                <button type="button" class="btn-primary">Select new opponent</button>
+            </div>
+            <div id="characterMoves1"></div>
+        </div>
     </div>
 </div>
 
 
 @section scripts {
     <script type="text/javascript">
-        $("#character1").on("click",
-            function(evt) {
-                evt.preventDefault();
-                evt.stopPropagation();
+        var url = "@Url.Action("Index", "Characters", new {id = "CHARACTER_ID"})";
 
-                var $characterMoves = $("#characterMoves"),
-                    url = $(this).data("url");
+        function showFrameData(characterId, side) {
 
-                $.get(url,
-                    function(data) {
-                        $characterMoves.replaceWith(data);
-                    });
-            })
+            var characterMoves = $("#characterMoves" + side);
+
+            $("#choose").hide();
+
+            if (side === 0) {
+                $("#characterRoster0").hide();
+                $("#button0").show();
+                $("#characterMoves0").show();
+            }
+            if (side === 1) {
+                $("#characterRoster1").hide();
+                $("#button1").show();
+                $("#characterMoves1").show();
+            }
+
+            $.get(url.replace("CHARACTER_ID", characterId),
+                function(data) {
+                    characterMoves.html(data);
+                });
+        }
+
+        $("#button0").on("click", function() {
+
+            $("#characterRoster0").show();
+            $("#characterMoves0").hide();
+            $("#button0").hide();
+
+        });
+
+        $("#button1").on("click", function () {
+
+            $("#characterRoster1").show();
+            $("#characterMoves1").hide();
+            $("#button1").hide();
+
+        });
     </script>
 }
 

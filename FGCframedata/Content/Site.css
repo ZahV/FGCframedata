@@ -41,3 +41,26 @@ textarea {
 .modal-content{
     background-color: grey;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+.characterIcon {
+    display: block;
+    width: 100px;
+    height: 100px;
+    padding: 3px;
+}
+.characterIcon img {
+    width: 100%;
+    height: 100%;
+}
+
+.characterIconContainer {
+    display: inline-block;
+
+}
+
+#button0, #button1 {
+    display: none;
+}
