@@ -29,7 +29,7 @@ namespace FGCFrameData.Models
         [Display(Name = "Recovery Frames")]
         public int? RecoveryFrames { get; set; }
 
-        [Display(Name = "Frame Advantage")]
+        [Display(Name = "Frame Adv. on Block")]
         public int? FrameAdvantage { get; set; }
 
         public bool Beats(Move other)

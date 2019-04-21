@@ -60,12 +60,17 @@ namespace FGCFrameData.Controllers
 
             var moveInDbName = _context.Moves.FirstOrDefault(c => c.Name == move.Name);
 
-            if (moveInDbName != null && moveInDbName.CharacterId == move.CharacterId)
+            if (moveInDbName != null && moveInDbName.CharacterId != move.CharacterId)
             {
                 return RedirectToAction("New");
             }
 
             moveInDb.Name = move.Name;
+            moveInDb.Input = move.Input;
+            moveInDb.ActiveFrames = move.ActiveFrames;
+            moveInDb.StartupFrames = move.StartupFrames;
+            moveInDb.RecoveryFrames = move.RecoveryFrames;
+            moveInDb.FrameAdvantage = move.FrameAdvantage;
 
             _context.SaveChanges();
             return RedirectToAction("Index", "MovesAdmin");

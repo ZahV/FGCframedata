@@ -48,20 +48,14 @@
 
         function showFrameData(characterId, side) {
 
-            var characterMoves = $("#characterMoves" + side);
-
-            $("#choose").hide();
-
-            if (side === 0) {
-                $("#characterRoster0").hide();
-                $("#button0").show();
-                $("#characterMoves0").show();
-            }
-            if (side === 1) {
-                $("#characterRoster1").hide();
-                $("#button1").show();
-                $("#characterMoves1").show();
-            }
+            var characterMoves = $(`#characterMoves${side}`);
+            $("#choose").fadeOut('fast');
+            $("#characterRoster" + side).fadeOut('slow');
+            $("#button" + side).show();
+            $("#characterMoves" + side).css({
+                'overflow-x': 'auto'
+            });
+            $("#characterMoves" + side).fadeIn('slow');
 
             $.get(url.replace("CHARACTER_ID", characterId),
                 function(data) {
@@ -69,21 +63,25 @@
                 });
         }
 
-        $("#button0").on("click", function() {
+        $("#button0").on("click",
+            function() {
 
-            $("#characterRoster0").show();
-            $("#characterMoves0").hide();
-            $("#button0").hide();
+                $("#characterRoster0").fadeIn('slow');
+                $("#characterMoves0").fadeOut('slow');
+                $("#button0").fadeOut('slow');
 
-        });
+            });
 
-        $("#button1").on("click", function () {
+        $("#button1").on("click",
+            function() {
 
-            $("#characterRoster1").show();
-            $("#characterMoves1").hide();
-            $("#button1").hide();
+                $("#characterRoster1").fadeIn('slow');
+                $("#characterMoves1").fadeOut('slow');
+                $("#button1").fadeOut('slow');
 
-        });
+            });
+
+    
     </script>
 }
 

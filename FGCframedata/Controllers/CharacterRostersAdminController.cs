@@ -63,7 +63,7 @@ namespace FGCFrameData.Controllers
 
             var uploadHelper = new UploadHelper(Server);
 
-            if (photo !=null)
+            if (photo != null)
             {
                 var filePath = uploadHelper.Upload(photo, nameof(CharacterRoster));
 

@@ -4,7 +4,7 @@
 
 <h2>@Model.CharacterName</h2>
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover" id="frameTable">
     <thead>
     <tr>
         <th>Name</th>
@@ -12,7 +12,7 @@
         <th>Startup Frames</th>
         <th>Active Frames</th>
         <th>Recovery Frames</th>
-        <th>Frame Advantage</th>
+        <th>Frame Adv. On Block</th>
     </tr>
     </thead>
     <tbody>
@@ -21,11 +21,28 @@
         <tr>
             <td>@move.Name</td>
             <td>@move.Input</td>
-            <td>@move.StartupFrames</td>
+            <td class="moveStartup">@move.StartupFrames</td>
             <td>@move.ActiveFrames</td>
             <td>@move.RecoveryFrames</td>
-            <td>@move.FrameAdvantage</td>
+            <td class="moveFrameAdv">@move.FrameAdvantage</td>
         </tr>
     }
     </tbody>
 </table>
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        $(function () {
+            $("#frameTable tr").mouseover(function () {
+                $(this).addClass("hover");
+            });
+            $("#frameTable tr").mouseleave(function () {
+                $(this).removeClass("hover");
+            });
+        });
+
+
+    </script>
+}
