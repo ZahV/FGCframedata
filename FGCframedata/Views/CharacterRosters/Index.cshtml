@@ -22,7 +22,22 @@
             <div id="button0">
                 <button type="button" class="btn-primary">Select new character</button>
             </div>
-            <div id="characterMoves0"></div>
+            <div id="characterMoves0" class="characterMoves">
+                <table class="table table-bordered table-hover" id="frameTable">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Input</th>
+                        <th>Startup Frames</th>
+                        <th>Active Frames</th>
+                        <th>Recovery Frames</th>
+                        <th>Frame Adv. On Block</th>
+                    </tr>
+                    </thead>
+                    <tbody id="char0Table">
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="col-6">
             <div id="characterRoster1">
@@ -36,7 +51,22 @@
             <div id="button1">
                 <button type="button" class="btn-primary">Select new opponent</button>
             </div>
-            <div id="characterMoves1"></div>
+            <div id="characterMoves1" class="characterMoves">
+                <table class="table table-bordered table-hover" id="frameTable">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Input</th>
+                        <th>Startup Frames</th>
+                        <th>Active Frames</th>
+                        <th>Recovery Frames</th>
+                        <th>Frame Adv. On Block</th>
+                    </tr>
+                    </thead>
+                    <tbody id="char1Table">
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -44,22 +74,48 @@
 
 @section scripts {
     <script type="text/javascript">
-        var url = "@Url.Action("Index", "Characters", new {id = "CHARACTER_ID"})";
 
+
+        var url = "@Url.Action("Index", "Characters", new {id = "CHARACTER_ID"})";
+        var character0Moves = [];
+        var character1Moves = [];
+
+       
+        function generateMovesTable(characterId, moves) {
+            var charTable = $("#char" + characterId + "Table");
+            charTable.empty();
+
+            for (var i = 0; i < moves.length; i++) {
+                var row = $(document.createElement("tr"));
+        
+                row.attr("id","char" + characterId + "move" +moves[i].Id);
+
+                row.append("<td>" + moves[i].Name + "</td>");
+                row.append("<td>" + moves[i].Input + "</td>");
+                row.append("<td>" + moves[i].StartupFrames + "</td>");
+                row.append("<td>" + moves[i].ActiveFrames + "</td>");
+                row.append("<td>" + moves[i].RecoveryFrames + "</td>");
+                row.append("<td>" + moves[i].FrameAdvantage + "</td>");
+                charTable.append(row);
+            }
+        }
         function showFrameData(characterId, side) {
 
-            var characterMoves = $(`#characterMoves${side}`);
+           
             $("#choose").fadeOut('fast');
             $("#characterRoster" + side).fadeOut('slow');
             $("#button" + side).show();
-            $("#characterMoves" + side).css({
-                'overflow-x': 'auto'
-            });
             $("#characterMoves" + side).fadeIn('slow');
 
             $.get(url.replace("CHARACTER_ID", characterId),
-                function(data) {
-                    characterMoves.html(data);
+                function (data) {
+                    
+                    if (side === 0) {
+                        character0Moves = data.Moves;
+                    } else {
+                        character1Moves = data.Moves;
+                    }
+                    generateMovesTable(side,data.Moves);
                 });
         }
 
@@ -81,7 +137,6 @@
 
             });
 
-    
     </script>
 }
 

@@ -26,10 +26,14 @@ namespace FGCFrameData.Controllers
             var moves = _context.Moves.Where(m => m.CharacterId == id).ToList();
             var characterName = _context.Characters.Single(c => c.Id == id).Name;
 
+
             if (Request.IsAjaxRequest())
             {
-                return PartialView("PartialFrameTable", new MovesViewModel(moves, characterName));
+                //  return PartialView("PartialFrameTable", new MovesViewModel(moves, characterName));
+                return Json(new MovesViewModel(moves, characterName), JsonRequestBehavior.AllowGet);
+
             }
+
 
             return View(new MovesViewModel(moves, characterName));
         }

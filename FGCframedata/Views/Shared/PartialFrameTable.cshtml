@@ -18,7 +18,7 @@
     <tbody>
     @foreach (var move in Model.Moves)
     {
-        <tr>
+        <tr id="move_@move.Id">
             <td>@move.Name</td>
             <td>@move.Input</td>
             <td class="moveStartup">@move.StartupFrames</td>
@@ -30,19 +30,19 @@
     </tbody>
 </table>
 
-@section scripts
-{
-    <script type="text/javascript">
 
-        $(function () {
-            $("#frameTable tr").mouseover(function () {
-                $(this).addClass("hover");
-            });
-            $("#frameTable tr").mouseleave(function () {
-                $(this).removeClass("hover");
-            });
-        });
+<script type="text/javascript">
+    var moves = {};
+    @foreach (var move in Model.Moves)
+    {
+        <text>
+            moves[@move.Id] = {
+                'Name': @move.Name,
+                'Startup' : @move.StartupFrames,
+                'FrameAdv':@move.FrameAdvantage
+            };
+        </text>
+    }
+    window.moves = moves;
+</script>
 
-
-    </script>
-}

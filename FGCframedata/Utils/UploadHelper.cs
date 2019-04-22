@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.EnterpriseServices;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -15,13 +13,13 @@ namespace FGCFrameData.Utils
 
         private HttpServerUtilityBase Server { get; }
 
-       
+
         public UploadHelper(HttpServerUtilityBase server)
         {
             Server = server;
         }
-        
-       
+
+
         public string Upload(HttpPostedFileBase file, string folder = null)
         {
             if (file == null)
@@ -31,12 +29,12 @@ namespace FGCFrameData.Utils
 
             if (file.ContentLength == 0)
             {
-                throw new InvalidDataException("Cannot upload empty file.");  
+                throw new InvalidDataException("Cannot upload empty file.");
             }
 
             string filePath = null;
 
-            var fileName = Path.GetFileNameWithoutExtension(file.FileName) + Path.GetExtension(file.FileName);
+            var fileName = Path.GetFileNameWithoutExtension(file.FileName) + Path.GetExtension(file.FileName.ToLower());
 
             if (_validFileExtensions.Contains(Path.GetExtension(file.FileName)))
             {
@@ -47,14 +45,14 @@ namespace FGCFrameData.Utils
                 throw new ArrayTypeMismatchException("Invalid file extension type.");
             }
 
-            
+
             int counter = 0;
 
             while (File.Exists(filePath))
             {
                 counter += 1;
 
-                fileName = Path.GetFileNameWithoutExtension(file.FileName) + "(" + counter + ")" + Path.GetExtension(file.FileName);
+                fileName = Path.GetFileNameWithoutExtension(file.FileName) + "(" + counter + ")" + Path.GetExtension(file.FileName.ToLower());
                 filePath = Path.Combine(Server.MapPath(UploadDirectory), fileName);
 
             }
